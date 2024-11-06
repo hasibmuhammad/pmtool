@@ -8,7 +8,11 @@ export interface ITaskInfoItem {
   totalCheckList: number;
   markedChecked: number;
   dueDate: string;
-  attachmentCount: number;
+  attachments: {
+    fileName: string;
+    fileUrl: string;
+    extension: string;
+  }[];
   commentCount: number;
   otherMemberAvatar1: string;
   otherMemberAvatar2: string;

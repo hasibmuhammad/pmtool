@@ -1,15 +1,17 @@
-"use client";
+import CalendarDotsIcon from "@/components/ui/CalendarDotsIcon";
+import ChatsCircleIcon from "@/components/ui/ChatsCircleIcon";
+import ClipboardTextIcon from "@/components/ui/ClipboardTextIcon";
+import LinkIcon from "@/components/ui/LinkIcon";
+import StackIcon from "@/components/ui/StackIcon";
 import { taskInfoItems } from "@/data";
-import {
-  CalendarDots,
-  ChatsCircle,
-  ClipboardText,
-  Link,
-  Stack,
-} from "@phosphor-icons/react";
+import clientPromise from "@/lib/mongodb";
 import Image from "next/image";
 
-const Home = (): JSX.Element => {
+const Home = async (): Promise<JSX.Element> => {
+  const client = await clientPromise;
+  const db = client.db("pmtool");
+  const tasks = await db.collection("tasks").find({}).toArray();
+
   const taskStatusCounts = taskInfoItems.reduce<Record<string, number>>(
     (acc, task) => {
       acc[task.taskStatus] = (acc[task.taskStatus] || 0) + 1;
@@ -17,7 +19,6 @@ const Home = (): JSX.Element => {
     },
     {}
   );
-
   const taskStatuses = [
     { name: "Incomplete", color: "bg-red-600" },
     { name: "To Do", color: "bg-[#00B5FF]" },
@@ -63,6 +64,7 @@ const Home = (): JSX.Element => {
                               width={100}
                               height={100}
                               className="w-full h-full rounded-full object-cover"
+                              loading="lazy"
                             />
                           </div>
                           <p className="text-sm">{item?.clientName}</p>
@@ -75,6 +77,7 @@ const Home = (): JSX.Element => {
                               width={100}
                               height={100}
                               className="w-full h-full rounded-full object-cover"
+                              loading="lazy"
                             />
                           </div>
                           <p className="text-sm">{item?.assignedTo}</p>
@@ -83,13 +86,13 @@ const Home = (): JSX.Element => {
 
                       <div className="my-2 flex justify-between">
                         <div className="flex gap-1 items-center justify-center">
-                          <Stack />
+                          <StackIcon />
                           <p className="text-sm max-w-[150px] truncate">
                             {item?.description}
                           </p>
                         </div>
                         <div className="flex justify-center gap-[1px] items-center bg-slate-100 p-2 rounded-md">
-                          <ClipboardText />
+                          <ClipboardTextIcon />
                           <p className="text-sm max-w-[150px] truncate">
                             {item?.markedChecked}/{item?.totalCheckList}
                           </p>
@@ -122,15 +125,15 @@ const Home = (): JSX.Element => {
                         </div>
 
                         <div className="flex gap-1 items-center">
-                          <ChatsCircle size={20} />
+                          <ChatsCircleIcon />
                           <p className="text-sm">{item?.commentCount}</p>
                         </div>
                         <div className="flex gap-1 items-center">
-                          <Link size={20} />
-                          <p className="text-sm">{item?.attachmentCount}</p>
+                          <LinkIcon />
+                          <p className="text-sm">25</p>
                         </div>
                         <div className="flex gap-1 items-center">
-                          <CalendarDots size={20} />
+                          <CalendarDotsIcon />
                           <p className="text-sm">{item?.dueDate}</p>
                         </div>
                       </div>

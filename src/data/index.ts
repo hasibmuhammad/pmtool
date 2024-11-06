@@ -10,12 +10,16 @@ export const taskInfoItems: ITaskInfoItem[] = [
     totalCheckList: 5,
     markedChecked: 2,
     dueDate: "07-11-2024",
-    attachmentCount: 5,
+    attachments: [{ fileName: "samplefile", fileUrl: "", extension: "" }],
     commentCount: 3,
-    assignedAvatar: "/avatar1.png",
-    clientAvatar: "/avatar1.png",
-    otherMemberAvatar1: "/avatar1.png",
-    otherMemberAvatar2: "/avatar1.png",
+    assignedAvatar:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar2_xvk8ow.png",
+    clientAvatar:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar1_w69qnv.png",
+    otherMemberAvatar1:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar1_w69qnv.png",
+    otherMemberAvatar2:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar2_xvk8ow.png",
     otherMemberCount: 2,
     taskStatus: "Incomplete",
   })),
@@ -28,12 +32,16 @@ export const taskInfoItems: ITaskInfoItem[] = [
     totalCheckList: 4,
     markedChecked: 1,
     dueDate: "08-11-2024",
-    attachmentCount: 3,
+    attachments: [{ fileName: "samplefile", fileUrl: "", extension: "" }],
     commentCount: 2,
-    assignedAvatar: "/avatar1.png",
-    clientAvatar: "/avatar1.png",
-    otherMemberAvatar1: "/avatar1.png",
-    otherMemberAvatar2: "/avatar1.png",
+    assignedAvatar:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar2_xvk8ow.png",
+    clientAvatar:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar1_w69qnv.png",
+    otherMemberAvatar1:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar1_w69qnv.png",
+    otherMemberAvatar2:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar2_xvk8ow.png",
     otherMemberCount: 1,
     taskStatus: "To Do",
   })),
@@ -46,12 +54,16 @@ export const taskInfoItems: ITaskInfoItem[] = [
     totalCheckList: 3,
     markedChecked: 1,
     dueDate: "09-11-2024",
-    attachmentCount: 6,
+    attachments: [{ fileName: "samplefile", fileUrl: "", extension: "" }],
     commentCount: 4,
-    assignedAvatar: "/avatar1.png",
-    clientAvatar: "/avatar1.png",
-    otherMemberAvatar1: "/avatar1.png",
-    otherMemberAvatar2: "/avatar1.png",
+    assignedAvatar:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar2_xvk8ow.png",
+    clientAvatar:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar1_w69qnv.png",
+    otherMemberAvatar1:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar1_w69qnv.png",
+    otherMemberAvatar2:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar2_xvk8ow.png",
     otherMemberCount: 3,
     taskStatus: "Doing",
   })),
@@ -64,12 +76,16 @@ export const taskInfoItems: ITaskInfoItem[] = [
     totalCheckList: 5,
     markedChecked: 5,
     dueDate: "10-11-2024",
-    attachmentCount: 2,
+    attachments: [{ fileName: "samplefile", fileUrl: "", extension: "" }],
     commentCount: 6,
-    assignedAvatar: "/avatar1.png",
-    clientAvatar: "/avatar1.png",
-    otherMemberAvatar1: "/avatar1.png",
-    otherMemberAvatar2: "/avatar1.png",
+    assignedAvatar:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar2_xvk8ow.png",
+    clientAvatar:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar1_w69qnv.png",
+    otherMemberAvatar1:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar1_w69qnv.png",
+    otherMemberAvatar2:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar2_xvk8ow.png",
     otherMemberCount: 4,
     taskStatus: "Under Review",
   })),
@@ -82,12 +98,16 @@ export const taskInfoItems: ITaskInfoItem[] = [
     totalCheckList: 6,
     markedChecked: 6,
     dueDate: "11-11-2024",
-    attachmentCount: 1,
+    attachments: [{ fileName: "samplefile", fileUrl: "", extension: "" }],
     commentCount: 5,
-    assignedAvatar: "/avatar1.png",
-    clientAvatar: "/avatar1.png",
-    otherMemberAvatar1: "/avatar1.png",
-    otherMemberAvatar2: "/avatar1.png",
+    assignedAvatar:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar2_xvk8ow.png",
+    clientAvatar:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar1_w69qnv.png",
+    otherMemberAvatar1:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar1_w69qnv.png",
+    otherMemberAvatar2:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar2_xvk8ow.png",
     otherMemberCount: 3,
     taskStatus: "Completed",
   })),
@@ -100,12 +120,16 @@ export const taskInfoItems: ITaskInfoItem[] = [
     totalCheckList: 5,
     markedChecked: 0,
     dueDate: "06-11-2024",
-    attachmentCount: 2,
+    attachments: [{ fileName: "samplefile", fileUrl: "", extension: "" }],
     commentCount: 4,
-    assignedAvatar: "/avatar1.png",
-    clientAvatar: "/avatar1.png",
-    otherMemberAvatar1: "/avatar1.png",
-    otherMemberAvatar2: "/avatar1.png",
+    assignedAvatar:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar2_xvk8ow.png",
+    clientAvatar:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar1_w69qnv.png",
+    otherMemberAvatar1:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar1_w69qnv.png",
+    otherMemberAvatar2:
+      "https://res.cloudinary.com/hasibmuhammad/image/upload/v1730895015/pmtool/avatar2_xvk8ow.png",
     otherMemberCount: 1,
     taskStatus: "Overdue",
   })),
