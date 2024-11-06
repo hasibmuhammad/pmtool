@@ -15,8 +15,6 @@ export async function POST(req: Request) {
       folder: "pmtool",
     });
 
-    console.log(uploadResponse);
-
     return NextResponse.json({
       fileName: `${uploadResponse.etag}.${uploadResponse.format}`,
       url: uploadResponse.secure_url,

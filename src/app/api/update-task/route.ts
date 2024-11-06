@@ -1,5 +1,5 @@
 import clientPromise from "@/lib/mongodb";
-import { ObjectId } from "mongodb";
+import { ObjectId, PushOperator } from "mongodb";
 import { NextResponse } from "next/server";
 
 interface UploadedFile {
@@ -19,7 +19,6 @@ export async function PATCH(req: Request) {
     const client = await clientPromise;
     const db = client.db("pmtool");
 
-    // Update the task with uploaded files
     const result = await db.collection("tasks").updateOne(
       { _id: new ObjectId(taskId) },
       {
@@ -28,7 +27,7 @@ export async function PATCH(req: Request) {
             $each: uploadedFiles,
             $position: -1,
           },
-        },
+        } as PushOperator<UploadedFile[]>,
       }
     );
 
@@ -44,10 +43,20 @@ export async function PATCH(req: Request) {
     }
 
     return NextResponse.json({ message: "Task updated successfully" });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error updating task files:", error);
+
+    // Narrow down error type if it has a message property
+    if (error instanceof Error) {
+      return NextResponse.json(
+        { error: "Failed to update task", details: error.message },
+        { status: 500 }
+      );
+    }
+
+    // Handle non-standard error types gracefully
     return NextResponse.json(
-      { error: "Failed to update task", details: error.message },
+      { error: "Failed to update task" },
       { status: 500 }
     );
   }

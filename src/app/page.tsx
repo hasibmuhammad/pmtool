@@ -3,15 +3,10 @@ import ChatsCircleIcon from "@/components/ui/ChatsCircleIcon";
 import ClipboardTextIcon from "@/components/ui/ClipboardTextIcon";
 import LinkIcon from "@/components/ui/LinkIcon";
 import StackIcon from "@/components/ui/StackIcon";
-import clientPromise from "@/lib/mongodb";
 import { ITaskInfoItem } from "@/types";
 import Image from "next/image";
 
 const Home = async (): Promise<JSX.Element> => {
-  // const client = await clientPromise;
-  // const db = client.db("pmtool");
-  // const tasks = await db.collection<ITaskInfoItem>("tasks").find({}).toArray();
-
   const res = await fetch("http://localhost:3000/api/tasks");
   const ourTasks: { tasks: ITaskInfoItem[] } = await res.json();
   const tasks = ourTasks?.tasks || [];
