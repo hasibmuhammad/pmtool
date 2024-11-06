@@ -1,4 +1,5 @@
 export interface ITaskInfoItem {
+  _id: string;
   id: number;
   clientName: string;
   clientAvatar: string;
@@ -10,7 +11,7 @@ export interface ITaskInfoItem {
   dueDate: string;
   attachments: {
     fileName: string;
-    fileUrl: string;
+    url: string;
     extension: string;
   }[];
   commentCount: number;

@@ -3,22 +3,24 @@ import ChatsCircleIcon from "@/components/ui/ChatsCircleIcon";
 import ClipboardTextIcon from "@/components/ui/ClipboardTextIcon";
 import LinkIcon from "@/components/ui/LinkIcon";
 import StackIcon from "@/components/ui/StackIcon";
-import { taskInfoItems } from "@/data";
 import clientPromise from "@/lib/mongodb";
+import { ITaskInfoItem } from "@/types";
 import Image from "next/image";
 
 const Home = async (): Promise<JSX.Element> => {
-  const client = await clientPromise;
-  const db = client.db("pmtool");
-  const tasks = await db.collection("tasks").find({}).toArray();
+  // const client = await clientPromise;
+  // const db = client.db("pmtool");
+  // const tasks = await db.collection<ITaskInfoItem>("tasks").find({}).toArray();
 
-  const taskStatusCounts = taskInfoItems.reduce<Record<string, number>>(
-    (acc, task) => {
-      acc[task.taskStatus] = (acc[task.taskStatus] || 0) + 1;
-      return acc;
-    },
-    {}
-  );
+  const res = await fetch("http://localhost:3000/api/tasks");
+  const ourTasks: { tasks: ITaskInfoItem[] } = await res.json();
+  const tasks = ourTasks?.tasks || [];
+
+  const taskStatusCounts = tasks.reduce<Record<string, number>>((acc, task) => {
+    acc[task.taskStatus] = (acc[task.taskStatus] || 0) + 1;
+    return acc;
+  }, {});
+
   const taskStatuses = [
     { name: "Incomplete", color: "bg-red-600" },
     { name: "To Do", color: "bg-[#00B5FF]" },
@@ -31,9 +33,7 @@ const Home = async (): Promise<JSX.Element> => {
   return (
     <div className="w-full flex gap-4">
       {taskStatuses.map(({ name, color }) => {
-        const currentCard = taskInfoItems.filter(
-          (item) => item.taskStatus === name
-        );
+        const currentCard = tasks.filter((item) => item.taskStatus === name);
         return (
           <div
             key={name}
@@ -129,8 +129,8 @@ const Home = async (): Promise<JSX.Element> => {
                           <p className="text-sm">{item?.commentCount}</p>
                         </div>
                         <div className="flex gap-1 items-center">
-                          <LinkIcon />
-                          <p className="text-sm">25</p>
+                          <LinkIcon id={item?._id.toString()} />
+                          <p className="text-sm">{item?.attachments?.length}</p>
                         </div>
                         <div className="flex gap-1 items-center">
                           <CalendarDotsIcon />

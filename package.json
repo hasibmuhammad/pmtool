@@ -10,8 +10,11 @@
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.7",
+    "bson": "^6.9.0",
+    "cloudinary": "^2.5.1",
     "mongodb": "^6.10.0",
     "next": "15.0.2",
+    "next-cloudinary": "^6.16.0",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-dom": "19.0.0-rc-02c0e824-20241028"
   },
