@@ -6,12 +6,14 @@ interface UploadModalProps {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   taskId: string;
+  onUploadDone: () => void;
 }
 
 const UploadModal = ({
   isOpen,
   setIsOpen,
   taskId,
+  onUploadDone,
 }: UploadModalProps): JSX.Element | null => {
   const [files, setFiles] = useState<File[]>([]);
   const [uploading, setUploading] = useState(false);
@@ -79,7 +81,7 @@ const UploadModal = ({
     setUploading(false);
     setIsOpen(false);
     setFiles([]);
-    router.push("/");
+    onUploadDone();
   };
 
   if (!isOpen) return null;

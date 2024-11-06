@@ -4,7 +4,13 @@ import { Link } from "@phosphor-icons/react";
 import UploadModal from "../UploadModal";
 import { useState } from "react";
 
-const LinkIcon = ({ id }: { id: string }): JSX.Element => {
+const LinkIcon = ({
+  id,
+  handleRefetch,
+}: {
+  id: string;
+  handleRefetch: () => void;
+}): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -17,7 +23,12 @@ const LinkIcon = ({ id }: { id: string }): JSX.Element => {
         <Link size={20} />
       </button>
       {isOpen && (
-        <UploadModal isOpen={isOpen} setIsOpen={setIsOpen} taskId={id} />
+        <UploadModal
+          onUploadDone={handleRefetch}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          taskId={id}
+        />
       )}
     </>
   );
