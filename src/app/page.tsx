@@ -1,6 +1,12 @@
 "use client";
 import { taskInfoItems } from "@/data";
-import { ClipboardText, Stack } from "@phosphor-icons/react";
+import {
+  CalendarDots,
+  ChatsCircle,
+  ClipboardText,
+  Link,
+  Stack,
+} from "@phosphor-icons/react";
 import Image from "next/image";
 
 const Home = (): JSX.Element => {
@@ -30,7 +36,7 @@ const Home = (): JSX.Element => {
         return (
           <div
             key={name}
-            className="flex-shrink-0 bg-slate-100 min-w-[276px] px-4 py-4"
+            className="flex-shrink-0 bg-slate-100 min-w-[350px] px-4 py-4"
           >
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
@@ -75,7 +81,7 @@ const Home = (): JSX.Element => {
                         </div>
                       </div>
 
-                      <div className="my-4 flex justify-between">
+                      <div className="my-2 flex justify-between">
                         <div className="flex gap-1 items-center justify-center">
                           <Stack />
                           <p className="text-sm max-w-[150px] truncate">
@@ -87,6 +93,45 @@ const Home = (): JSX.Element => {
                           <p className="text-sm max-w-[150px] truncate">
                             {item?.markedChecked}/{item?.totalCheckList}
                           </p>
+                        </div>
+                      </div>
+
+                      <div className="flex justify-between">
+                        <div className="flex gap-1">
+                          <div className="w-[30px] h-[30px] rounded-full">
+                            <Image
+                              src={item?.otherMemberAvatar1}
+                              alt={item?.assignedTo}
+                              width={100}
+                              height={100}
+                              className="w-full h-full rounded-full object-cover"
+                            />
+                          </div>
+                          <div className="w-[30px] h-[30px] rounded-full">
+                            <Image
+                              src={item?.otherMemberAvatar2}
+                              alt={item?.assignedTo}
+                              width={100}
+                              height={100}
+                              className="w-full h-full rounded-full object-cover"
+                            />
+                          </div>
+                          <div className="bg-slate-100 w-[30px] h-[30px] rounded-full flex justify-center items-center text-sm">
+                            {item?.otherMemberCount}+
+                          </div>
+                        </div>
+
+                        <div className="flex gap-1 items-center">
+                          <ChatsCircle size={20} />
+                          <p className="text-sm">{item?.commentCount}</p>
+                        </div>
+                        <div className="flex gap-1 items-center">
+                          <Link size={20} />
+                          <p className="text-sm">{item?.attachmentCount}</p>
+                        </div>
+                        <div className="flex gap-1 items-center">
+                          <CalendarDots size={20} />
+                          <p className="text-sm">{item?.dueDate}</p>
                         </div>
                       </div>
                     </div>
