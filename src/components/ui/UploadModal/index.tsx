@@ -119,7 +119,7 @@ const UploadModal = ({
             {attachments?.length > 0 ? (
               attachments?.map((attachment, index) => {
                 return (
-                  <div key={index} className="px-4 flex justify-between">
+                  <div key={index} className="pr-4 flex justify-between">
                     <p>{attachment?.fileName}</p>
                     <p className="bg-emerald-400 px-2 rounded-lg text-white text-xs">
                       {attachment?.extension}
