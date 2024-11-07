@@ -1,5 +1,8 @@
-import { CircleNotch } from "@phosphor-icons/react";
-import { useRouter } from "next/navigation";
+"use client";
+import { ITaskInfoItem } from "@/types";
+import { CircleNotch, X } from "@phosphor-icons/react";
+import { useQuery } from "@tanstack/react-query";
+import axios, { AxiosResponse } from "axios";
 import { Dispatch, SetStateAction, useState } from "react";
 
 interface UploadModalProps {
@@ -17,7 +20,21 @@ const UploadModal = ({
 }: UploadModalProps): JSX.Element | null => {
   const [files, setFiles] = useState<File[]>([]);
   const [uploading, setUploading] = useState(false);
-  const router = useRouter();
+
+  const { data } = useQuery({
+    queryKey: ["getTaskById", taskId],
+    queryFn: async () => {
+      const res: AxiosResponse<{ task: ITaskInfoItem }> = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/task?id=${taskId}`
+      );
+
+      return res.data;
+    },
+    enabled: !!taskId,
+    refetchOnWindowFocus: false,
+  });
+
+  const attachments = data?.task?.attachments || [];
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -66,7 +83,6 @@ const UploadModal = ({
       }
     }
 
-    // Now update MongoDB with the taskId and the uploaded file details
     const updateResponse = await fetch("/api/update-task", {
       method: "PATCH",
       body: JSON.stringify({ taskId, uploadedFiles: uploadedFilesData }),
@@ -88,8 +104,41 @@ const UploadModal = ({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-[600px] space-y-4">
-        <h2 className="text-xl font-semibold">Upload Files</h2>
+      <div className="relative bg-white rounded-lg shadow-lg p-6 w-full max-w-[600px] space-y-4">
+        <div
+          className="absolute top-2 right-4 cursor-pointer"
+          onClick={() => setIsOpen(false)}
+        >
+          <X size={28} />
+        </div>
+        <div>
+          <h2 className="text-xl font-semibold">Uploaded Files</h2>
+          <p className="text-xs text-slate-400">Uploaded files for this task</p>
+
+          <div className="max-h-[200px] overflow-auto space-y-1 text-sm">
+            {attachments?.length > 0 ? (
+              attachments?.map((attachment, index) => {
+                return (
+                  <div key={index} className="px-4 flex justify-between">
+                    <p>{attachment?.fileName}</p>
+                    <p className="bg-emerald-400 px-2 rounded-lg text-white text-xs">
+                      {attachment?.extension}
+                    </p>
+                  </div>
+                );
+              })
+            ) : (
+              <p className="mt-2 text-slate-400">No files found!</p>
+            )}
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-xl font-semibold">Upload Files</h2>
+          <p className="text-xs text-slate-400">
+            supported files (all kind of images, pdf etc.)
+          </p>
+        </div>
 
         <input
           type="file"

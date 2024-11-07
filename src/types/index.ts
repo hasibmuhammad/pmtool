@@ -1,5 +1,7 @@
+import { ObjectId } from "bson";
+
 export interface ITaskInfoItem {
-  _id: string;
+  _id: ObjectId;
   id: number;
   clientName: string;
   clientAvatar: string;

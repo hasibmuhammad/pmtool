@@ -9,7 +9,6 @@ import { ITaskInfoItem } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import axios, { AxiosResponse } from "axios";
 import Image from "next/image";
-import { useEffect } from "react";
 
 const Home = (): JSX.Element => {
   const { data, isFetching, refetch } = useQuery({
